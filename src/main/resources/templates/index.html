@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>HospitalApp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<main class="container hero">
+    <section class="hero-card">
+        <p class="eyebrow">HospitalApp</p>
+        <h1>Panel principal</h1>
+        <p class="lead">Gestiona pacientes, medicos, citas, ingresos y tratamientos desde un solo lugar.</p>
+        <div class="actions">
+            <a class="btn" th:href="@{/pacientes}">Ver pacientes</a>
+            <a class="btn btn-secondary" th:href="@{/medicos}">Ver medicos</a>
+        </div>
+    </section>
+
+    <section class="grid">
+        <a class="tile" th:href="@{/citas}">
+            <h2>Citas</h2>
+            <p>Consulta y organiza las citas programadas.</p>
+        </a>
+        <a class="tile" th:href="@{/ingresos}">
+            <h2>Ingresos</h2>
+            <p>Revisa los ingresos activos y altas.</p>
+        </a>
+        <a class="tile" th:href="@{/especialidades}">
+            <h2>Especialidades</h2>
+            <p>Administra las &aacute;reas cl&iacute;nicas del hospital.</p>
+        </a>
+        <a class="tile" th:href="@{/medicamentos}">
+            <h2>Medicamentos</h2>
+            <p>Gestiona el inventario farmac&eacute;utico.</p>
+        </a>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Médicos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1 th:text="${titulo != null ? titulo : 'Médicos'}"></h1>
+    <a class="btn" th:href="@{/medicos/nuevo}">Nuevo médico</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Num Colegiado</th>
+            <th>Especialidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${medicos}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.nombre}"></td>
+            <td th:text="${m.apellido}"></td>
+            <td th:text="${m.numColegiado}"></td>
+            <td th:text="${m.especialidad != null ? m.especialidad.nombre : ''}"></td>
+            <td>
+                <a th:href="@{'/medicos/editar/' + ${m.id}}">Editar</a>
+                <form th:action="@{'/medicos/borrar/' + ${m.id}}" method="post" style="display:inline">
+                    <button type="submit" onclick="return confirm('¿Borrar médico?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

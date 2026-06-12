@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tratamientos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Tratamientos</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cita</th>
+            <th>Descripción</th>
+            <th>Duración</th>
+            <th>Frecuencia</th>
+            <th>Medicamentos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="t : ${tratamientos}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.cita != null ? t.cita.id : ''}"></td>
+            <td th:text="${t.descripcion}"></td>
+            <td th:text="${t.duracion}"></td>
+            <td th:text="${t.frecuencia}"></td>
+            <td>
+                <span th:if="${t.medicamentos != null}">
+                    <span th:each="m,iter : ${t.medicamentos}">
+                        <span th:text="${m.nombre}"></span><span th:if="${!iter.last}">, </span>
+                    </span>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

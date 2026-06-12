@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Especialidades</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Especialidades</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Médicos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e : ${especialidades}">
+            <td th:text="${e.id}"></td>
+            <td th:text="${e.nombre}"></td>
+            <td th:text="${e.descripcion}"></td>
+            <td><a th:href="@{'/especialidades/' + ${e.id} + '/medicos'}">Ver médicos</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

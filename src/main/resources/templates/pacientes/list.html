@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pacientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Pacientes</h1>
+    <a class="btn" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Habitación</th>
+            <th>DNI</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${pacientes}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.nombre}"></td>
+            <td th:text="${p.apellido}"></td>
+            <td>
+                <span th:if="${p.ingresos != null}">
+                    <span th:each="ing : ${p.ingresos}">
+                        <span th:if="${ing.fechaAlta} == null" th:text="${ing.habitacion.numero}"></span>
+                    </span>
+                </span>
+            </td>
+            <td th:text="${p.dni}"></td>
+            <td>
+                <a th:href="@{'/pacientes/editar/' + ${p.id}}">Editar</a>
+                <form th:action="@{'/pacientes/borrar/' + ${p.id}}" method="post" style="display:inline">
+                    <button type="submit" onclick="return confirm('¿Borrar paciente?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

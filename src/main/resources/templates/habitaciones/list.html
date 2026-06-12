@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Habitaciones</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Habitaciones</h1>
+    <h3>Disponibles</h3>
+    <ul>
+        <li th:each="h : ${disponibles}" th:text="${h.numero + ' - ' + h.tipo + ' (Planta ' + h.planta + ')'}"></li>
+    </ul>
+    <h3>Todas</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Número</th>
+            <th>Tipo</th>
+            <th>Capacidad</th>
+            <th>Planta</th>
+            <th>Disponible</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="h : ${habitaciones}">
+            <td th:text="${h.id}"></td>
+            <td th:text="${h.numero}"></td>
+            <td th:text="${h.tipo}"></td>
+            <td th:text="${h.capacidad}"></td>
+            <td th:text="${h.planta}"></td>
+            <td th:text="${h.disponible} ? 'Sí' : 'No'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

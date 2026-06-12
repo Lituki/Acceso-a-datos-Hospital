@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="nav" class="nav">
+    <a class="brand" th:href="@{/}">HospitalApp</a>
+    <div class="nav-links">
+        <a th:href="@{/pacientes}">Pacientes</a>
+        <a th:href="@{/medicos}">Medicos</a>
+        <a th:href="@{/citas}">Citas</a>
+        <a th:href="@{/ingresos}">Ingresos</a>
+        <a th:href="@{/habitaciones}">Habitaciones</a>
+        <a th:href="@{/especialidades}">Especialidades</a>
+        <a th:href="@{/medicamentos}">Medicamentos</a>
+        <a th:href="@{/tratamientos}">Tratamientos</a>
+    </div>
+</nav>
+</body>
+</html>

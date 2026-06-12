@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Medicamentos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Medicamentos</h1>
+    <div class="actions">
+        <a class="btn" th:href="@{/medicamentos/nuevo}">Nuevo medicamento</a>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Composición</th>
+            <th>Precio</th>
+            <th>Unidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="m : ${medicamentos}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.nombre}"></td>
+            <td th:text="${m.composicion}"></td>
+            <td th:text="${m.precio}"></td>
+            <td th:text="${m.unidad}"></td>
+            <td>
+                <a th:href="@{|/medicamentos/ver/${m.id}|}">Ver</a>
+                <a th:href="@{|/medicamentos/editar/${m.id}|}">Editar</a>
+                <form th:action="@{|/medicamentos/borrar/${m.id}|}" method="post" style="display:inline">
+                    <button type="submit" onclick="return confirm('¿Borrar medicamento?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

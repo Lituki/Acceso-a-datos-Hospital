@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Médico</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1 th:text="${medico.id} == null ? 'Nuevo médico' : 'Editar médico'"></h1>
+    <form th:action="@{/medicos/guardar}" th:object="${medico}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label>Nombre</label>
+            <input type="text" th:field="*{nombre}" />
+        </div>
+        <div>
+            <label>Apellido</label>
+            <input type="text" th:field="*{apellido}" />
+        </div>
+        <div>
+            <label>Num Colegiado</label>
+            <input type="text" th:field="*{numColegiado}" />
+        </div>
+        <div>
+            <label>Teléfono</label>
+            <input type="text" th:field="*{telefono}" />
+        </div>
+        <div>
+            <label>Email</label>
+            <input type="email" th:field="*{email}" />
+        </div>
+        <div>
+            <label>Especialidad</label>
+            <select th:field="*{especialidad.id}">
+                <option th:each="e : ${especialidades}" th:value="${e.id}" th:text="${e.nombre}"></option>
+            </select>
+        </div>
+        <div class="actions">
+            <button type="submit">Guardar</button>
+            <a class="btn" th:href="@{/medicos}">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
