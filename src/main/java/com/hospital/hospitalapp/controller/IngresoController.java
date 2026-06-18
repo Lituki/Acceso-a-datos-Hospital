@@ -1,8 +1,6 @@
 package com.hospital.hospitalapp.controller;
 
-import com.hospital.hospitalapp.model.Habitacion;
-import com.hospital.hospitalapp.model.Ingreso;
-import com.hospital.hospitalapp.model.Paciente;
+
 import com.hospital.hospitalapp.service.HabitacionService;
 import com.hospital.hospitalapp.service.IngresoService;
 import com.hospital.hospitalapp.service.PacienteService;
