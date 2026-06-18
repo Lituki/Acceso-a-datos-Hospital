@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TratamientoRepository extends JpaRepository<Tratamiento, Long> {
     List<Tratamiento> findByCitaId(Long idCita);
+    List<Tratamiento> findByDuracionAndFrecuencia(Integer duracion, String frecuencia );
+    List <Tratamiento> findByFrecuenciaContainingIgnoreCase(String frecuencia);
 }

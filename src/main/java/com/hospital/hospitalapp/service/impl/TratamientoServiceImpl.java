@@ -6,6 +6,8 @@ import com.hospital.hospitalapp.repository.CitaRepository;
 import com.hospital.hospitalapp.repository.TratamientoRepository;
 import com.hospital.hospitalapp.service.TratamientoService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,7 +60,7 @@ public class TratamientoServiceImpl implements TratamientoService {
     public List<Tratamiento> obtenerTratamientosDeCita(Long idCita) {
         return tratamientoRepo.findByCitaId(idCita);
     }
-
+    @Autowired
     @Override
     public void eliminar(Long id) {
         tratamientoRepo.deleteById(id);

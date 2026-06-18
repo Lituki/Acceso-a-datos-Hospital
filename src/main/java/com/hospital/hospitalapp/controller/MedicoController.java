@@ -1,7 +1,6 @@
 package com.hospital.hospitalapp.controller;
 
 import com.hospital.hospitalapp.model.Medico;
-import com.hospital.hospitalapp.model.Especialidad;
 import com.hospital.hospitalapp.repository.MedicoRepository;
 import com.hospital.hospitalapp.repository.EspecialidadRepository;
 import org.springframework.stereotype.Controller;
