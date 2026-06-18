@@ -30,6 +30,12 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     @Transactional(readOnly = true)
+    public Optional<Medico> obtenerParaFormulario(Long id) {
+        return medicoRepo.findById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<Medico> obtenerTodos() {
         return medicoRepo.findAll();
     }

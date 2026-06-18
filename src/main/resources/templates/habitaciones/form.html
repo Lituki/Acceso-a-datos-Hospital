@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Habitacion</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1 th:text="${habitacion.id} == null ? 'Nueva habitacion' : 'Editar habitacion'"></h1>
+    <form th:action="@{/habitaciones/guardar}" th:object="${habitacion}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label>Numero</label>
+            <input type="text" th:field="*{numero}" />
+            <div class="error" th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></div>
+        </div>
+        <div>
+            <label>Tipo</label>
+            <input type="text" th:field="*{tipo}" />
+            <div class="error" th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
+        </div>
+        <div>
+            <label>Capacidad</label>
+            <input type="number" th:field="*{capacidad}" />
+            <div class="error" th:if="${#fields.hasErrors('capacidad')}" th:errors="*{capacidad}"></div>
+        </div>
+        <div>
+            <label>Planta</label>
+            <input type="text" th:field="*{planta}" />
+            <div class="error" th:if="${#fields.hasErrors('planta')}" th:errors="*{planta}"></div>
+        </div>
+        <div>
+            <label>Disponible</label>
+            <input type="checkbox" th:field="*{disponible}" />
+        </div>
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+        </div>
+        <div class="actions">
+            <button type="submit">Guardar</button>
+            <a class="btn" th:href="@{/habitaciones}">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

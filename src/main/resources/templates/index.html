@@ -11,29 +11,46 @@
     <section class="hero-card">
         <p class="eyebrow">HospitalApp</p>
         <h1>Panel principal</h1>
-        <p class="lead">Gestiona pacientes, medicos, citas, ingresos y tratamientos desde un solo lugar.</p>
+        <p class="lead">Gestiona pacientes, medicos, citas, ingresos, habitaciones, tratamientos y medicamentos desde un solo lugar.</p>
         <div class="actions">
-            <a class="btn" th:href="@{/pacientes}">Ver pacientes</a>
-            <a class="btn btn-secondary" th:href="@{/medicos}">Ver medicos</a>
+            <a class="btn" th:href="@{/pacientes}">Pacientes</a>
+            <a class="btn btn-secondary" th:href="@{/medicos}">Medicos</a>
+            <a class="btn btn-secondary" th:href="@{/citas}">Citas</a>
         </div>
     </section>
 
     <section class="grid">
-        <a class="tile" th:href="@{/citas}">
-            <h2>Citas</h2>
-            <p>Consulta y organiza las citas programadas.</p>
+        <a class="tile" th:href="@{/pacientes/nuevo}">
+            <h2>Nuevo paciente</h2>
+            <p>Registra un paciente nuevo.</p>
         </a>
-        <a class="tile" th:href="@{/ingresos}">
-            <h2>Ingresos</h2>
-            <p>Revisa los ingresos activos y altas.</p>
+        <a class="tile" th:href="@{/medicos/nuevo}">
+            <h2>Nuevo medico</h2>
+            <p>Da de alta un profesional y su especialidad.</p>
+        </a>
+        <a class="tile" th:href="@{/citas/nuevo}">
+            <h2>Nueva cita</h2>
+            <p>Programa una cita con paciente y medicos.</p>
+        </a>
+        <a class="tile" th:href="@{/ingresos/nuevo}">
+            <h2>Nuevo ingreso</h2>
+            <p>Asigna una habitacion y marca su ocupacion.</p>
+        </a>
+        <a class="tile" th:href="@{/habitaciones/nuevo}">
+            <h2>Nueva habitacion</h2>
+            <p>Configura una habitacion disponible en planta.</p>
+        </a>
+        <a class="tile" th:href="@{/medicamentos/nuevo}">
+            <h2>Nuevo medicamento</h2>
+            <p>Registra un medicamento en el sistema.</p>
+        </a>
+        <a class="tile" th:href="@{/tratamientos/nuevo}">
+            <h2>Nuevo tratamiento</h2>
+            <p>Asocia tratamiento, cita y medicamentos.</p>
         </a>
         <a class="tile" th:href="@{/especialidades}">
             <h2>Especialidades</h2>
-            <p>Administra las &aacute;reas cl&iacute;nicas del hospital.</p>
-        </a>
-        <a class="tile" th:href="@{/medicamentos}">
-            <h2>Medicamentos</h2>
-            <p>Gestiona el inventario farmac&eacute;utico.</p>
+            <p>Consulta los medicos por especialidad.</p>
         </a>
     </section>
 </main>

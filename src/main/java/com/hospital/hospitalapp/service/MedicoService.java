@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface MedicoService {
     Medico guardar(Medico medico);
     Optional<Medico> obtenerPorId(Long id);
+    Optional<Medico> obtenerParaFormulario(Long id);
     List<Medico> obtenerTodos();
     List<Medico> obtenerPorEspecialidad(Long idEspecialidad);
     Optional<Medico> obtenerPorNumColegiado(String numColegiado);

@@ -9,6 +9,9 @@
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
     <h1>Habitaciones</h1>
+    <div class="actions">
+        <a class="btn" th:href="@{/habitaciones/nuevo}">Nueva habitacion</a>
+    </div>
     <h3>Disponibles</h3>
     <ul>
         <li th:each="h : ${disponibles}" th:text="${h.numero + ' - ' + h.tipo + ' (Planta ' + h.planta + ')'}"></li>
@@ -18,11 +21,12 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Número</th>
+            <th>Numero</th>
             <th>Tipo</th>
             <th>Capacidad</th>
             <th>Planta</th>
             <th>Disponible</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +36,13 @@
             <td th:text="${h.tipo}"></td>
             <td th:text="${h.capacidad}"></td>
             <td th:text="${h.planta}"></td>
-            <td th:text="${h.disponible} ? 'Sí' : 'No'"></td>
+            <td th:text="${h.disponible} ? 'Si' : 'No'"></td>
+            <td>
+                <a th:href="@{'/habitaciones/editar/' + ${h.id}}">Editar</a>
+                <form th:action="@{'/habitaciones/borrar/' + ${h.id}}" method="post" style="display:inline">
+                    <button type="submit" onclick="return confirm('Borrar habitacion?')">Borrar</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

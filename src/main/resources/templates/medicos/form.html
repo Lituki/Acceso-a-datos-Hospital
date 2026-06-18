@@ -2,40 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Médico</title>
+    <title>Medico</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
-    <h1 th:text="${medico.id} == null ? 'Nuevo médico' : 'Editar médico'"></h1>
+    <h1 th:text="${medico.id} == null ? 'Nuevo medico' : 'Editar medico'"></h1>
     <form th:action="@{/medicos/guardar}" th:object="${medico}" method="post">
         <input type="hidden" th:field="*{id}" />
         <div>
             <label>Nombre</label>
             <input type="text" th:field="*{nombre}" />
+            <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
         </div>
         <div>
             <label>Apellido</label>
             <input type="text" th:field="*{apellido}" />
+            <div class="error" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
         </div>
         <div>
-            <label>Num Colegiado</label>
+            <label>Num colegiado</label>
             <input type="text" th:field="*{numColegiado}" />
+            <div class="error" th:if="${#fields.hasErrors('numColegiado')}" th:errors="*{numColegiado}"></div>
         </div>
         <div>
-            <label>Teléfono</label>
+            <label>Telefono</label>
             <input type="text" th:field="*{telefono}" />
         </div>
         <div>
             <label>Email</label>
             <input type="email" th:field="*{email}" />
+            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
         <div>
             <label>Especialidad</label>
             <select th:field="*{especialidad.id}">
+                <option value="">Seleccione una especialidad</option>
                 <option th:each="e : ${especialidades}" th:value="${e.id}" th:text="${e.nombre}"></option>
             </select>
+            <div class="error" th:if="${#fields.hasErrors('especialidad')}" th:errors="*{especialidad}"></div>
+        </div>
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <div class="actions">
             <button type="submit">Guardar</button>

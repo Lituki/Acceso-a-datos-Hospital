@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CitaService {
+    Cita guardar(Cita cita, List<Long> medicoIds);
     Cita programarCita(Long idPaciente, Long idMedico, LocalDateTime fechaHora, String motivo);
     Optional<Cita> obtenerPorId(Long id);
+    Optional<Cita> obtenerParaFormulario(Long id);
     List<Cita> obtenerTodas();
     List<Cita> obtenerCitasDePaciente(Long idPaciente);
     List<Cita> obtenerCitasDelMedico(Long idMedico);

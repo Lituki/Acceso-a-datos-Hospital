@@ -9,6 +9,9 @@
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
     <h1>Ingresos</h1>
+    <div class="actions">
+        <a class="btn" th:href="@{/ingresos/nuevo}">Nuevo ingreso</a>
+    </div>
     <h3>Activos</h3>
     <ul>
         <li th:each="i : ${activos}" th:text="${i.paciente.nombre + ' ' + i.paciente.apellido + ' - Hab: ' + i.habitacion.numero}"></li>
@@ -19,10 +22,11 @@
         <tr>
             <th>ID</th>
             <th>Paciente</th>
-            <th>Habitación</th>
+            <th>Habitacion</th>
             <th>Fecha Ingreso</th>
             <th>Fecha Alta</th>
             <th>Motivo</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +37,11 @@
             <td th:text="${i.fechaIngreso}"></td>
             <td th:text="${i.fechaAlta}"></td>
             <td th:text="${i.motivo}"></td>
+            <td>
+                <form th:if="${i.fechaAlta == null}" th:action="@{'/ingresos/alta/' + ${i.id}}" method="post" style="display:inline">
+                    <button type="submit">Dar de alta</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

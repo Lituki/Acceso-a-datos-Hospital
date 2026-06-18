@@ -9,15 +9,18 @@
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
     <h1>Pacientes</h1>
-    <a class="btn" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
+    <div class="actions">
+        <a class="btn" th:href="@{/pacientes/nuevo}">Nuevo paciente</a>
+    </div>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Habitación</th>
             <th>DNI</th>
+            <th>Email</th>
+            <th>Telefono</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -26,18 +29,13 @@
             <td th:text="${p.id}"></td>
             <td th:text="${p.nombre}"></td>
             <td th:text="${p.apellido}"></td>
-            <td>
-                <span th:if="${p.ingresos != null}">
-                    <span th:each="ing : ${p.ingresos}">
-                        <span th:if="${ing.fechaAlta} == null" th:text="${ing.habitacion.numero}"></span>
-                    </span>
-                </span>
-            </td>
             <td th:text="${p.dni}"></td>
+            <td th:text="${p.email}"></td>
+            <td th:text="${p.telefono}"></td>
             <td>
                 <a th:href="@{'/pacientes/editar/' + ${p.id}}">Editar</a>
                 <form th:action="@{'/pacientes/borrar/' + ${p.id}}" method="post" style="display:inline">
-                    <button type="submit" onclick="return confirm('¿Borrar paciente?')">Borrar</button>
+                    <button type="submit" onclick="return confirm('Borrar paciente?')">Borrar</button>
                 </form>
             </td>
         </tr>

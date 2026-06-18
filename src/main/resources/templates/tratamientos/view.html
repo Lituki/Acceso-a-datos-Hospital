@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tratamiento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Tratamiento</h1>
+    <p><strong>ID:</strong> <span th:text="${tratamiento.id}"></span></p>
+    <p><strong>Descripcion:</strong> <span th:text="${tratamiento.descripcion}"></span></p>
+    <p><strong>Duracion:</strong> <span th:text="${tratamiento.duracion}"></span></p>
+    <p><strong>Frecuencia:</strong> <span th:text="${tratamiento.frecuencia}"></span></p>
+    <p><strong>Indicaciones:</strong> <span th:text="${tratamiento.indicaciones}"></span></p>
+    <p><strong>Cita:</strong> <span th:text="${tratamiento.cita != null ? tratamiento.cita.id : 'Sin cita'}"></span></p>
+    <p><strong>Medicamentos:</strong>
+        <span th:if="${tratamiento.medicamentos != null}">
+            <span th:each="m, iter : ${tratamiento.medicamentos}">
+                <span th:text="${m.nombre}"></span><span th:if="${!iter.last}">, </span>
+            </span>
+        </span>
+    </p>
+    <a class="btn" th:href="@{/tratamientos}">Volver</a>
+</div>
+</body>
+</html>

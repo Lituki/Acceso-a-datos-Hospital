@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Tratamiento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1 th:text="${tratamiento.id} == null ? 'Nuevo tratamiento' : 'Editar tratamiento'"></h1>
+    <form th:action="@{/tratamientos/guardar}" th:object="${tratamiento}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label>Descripcion</label>
+            <input type="text" th:field="*{descripcion}" />
+            <div class="error" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+        </div>
+        <div>
+            <label>Duracion</label>
+            <input type="number" th:field="*{duracion}" />
+            <div class="error" th:if="${#fields.hasErrors('duracion')}" th:errors="*{duracion}"></div>
+        </div>
+        <div>
+            <label>Frecuencia</label>
+            <input type="text" th:field="*{frecuencia}" />
+            <div class="error" th:if="${#fields.hasErrors('frecuencia')}" th:errors="*{frecuencia}"></div>
+        </div>
+        <div>
+            <label>Indicaciones</label>
+            <textarea th:field="*{indicaciones}"></textarea>
+        </div>
+        <div>
+            <label>Cita</label>
+            <select th:field="*{cita.id}">
+                <option value="">Sin cita asociada</option>
+                <option th:each="c : ${citas}" th:value="${c.id}" th:text="${c.id + ' - ' + c.motivo}"></option>
+            </select>
+        </div>
+        <div>
+            <label>Medicamentos</label>
+            <select name="medicamentoIds" multiple size="5">
+                <option th:each="m : ${medicamentos}"
+                        th:value="${m.id}"
+                        th:text="${m.nombre}"
+                        th:selected="${selectedMedicamentos != null and selectedMedicamentos.contains(m.id)}"></option>
+            </select>
+        </div>
+        <div class="actions">
+            <button type="submit">Guardar</button>
+            <a class="btn" th:href="@{/tratamientos}">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

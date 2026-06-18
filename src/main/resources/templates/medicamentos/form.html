@@ -14,18 +14,23 @@
         <div>
             <label>Nombre</label>
             <input type="text" th:field="*{nombre}" />
+            <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
         </div>
         <div>
-            <label>Composición</label>
+            <label>Composicion</label>
             <input type="text" th:field="*{composicion}" />
         </div>
         <div>
             <label>Precio</label>
             <input type="number" step="0.01" th:field="*{precio}" />
+            <div class="error" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
         </div>
         <div>
             <label>Unidad</label>
             <input type="text" th:field="*{unidad}" />
+        </div>
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <div class="actions">
             <button type="submit">Guardar</button>

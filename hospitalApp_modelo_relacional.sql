@@ -83,7 +83,7 @@ CREATE TABLE ingreso (
     id              BIGINT NOT NULL AUTO_INCREMENT,
     fecha_ingreso   DATE   NOT NULL,
     fecha_alta      DATE,
-    motivo          VARCHAR(255),
+    motivo          VARCHAR(255) NOT NULL,
     observaciones   TEXT,
     id_paciente     BIGINT NOT NULL,
     id_habitacion   BIGINT NOT NULL,
@@ -109,9 +109,9 @@ CREATE TABLE tratamiento (
     duracion       INT NOT NULL,         -- en días
     frecuencia     VARCHAR(100) NOT NULL, -- 3 veces al día, cada 8 horas...
     indicaciones   TEXT,
-    id_cita        BIGINT       NOT NULL,
+    id_cita        BIGINT       NULL,
     PRIMARY KEY (id),
-    CONSTRAINT fk_tratamiento_cita FOREIGN KEY (id_cita) REFERENCES cita(id) ON DELETE CASCADE
+    CONSTRAINT fk_tratamiento_cita FOREIGN KEY (id_cita) REFERENCES cita(id) ON DELETE SET NULL
 );
 
 -- 10. Tabla puente TRATAMIENTO <-> MEDICAMENTO  (N:M)

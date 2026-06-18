@@ -9,15 +9,19 @@
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
     <h1>Tratamientos</h1>
+    <div class="actions">
+        <a class="btn" th:href="@{/tratamientos/nuevo}">Nuevo tratamiento</a>
+    </div>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>Cita</th>
-            <th>Descripción</th>
-            <th>Duración</th>
+            <th>Descripcion</th>
+            <th>Duracion</th>
             <th>Frecuencia</th>
             <th>Medicamentos</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -29,10 +33,17 @@
             <td th:text="${t.frecuencia}"></td>
             <td>
                 <span th:if="${t.medicamentos != null}">
-                    <span th:each="m,iter : ${t.medicamentos}">
+                    <span th:each="m, iter : ${t.medicamentos}">
                         <span th:text="${m.nombre}"></span><span th:if="${!iter.last}">, </span>
                     </span>
                 </span>
+            </td>
+            <td>
+                <a th:href="@{'/tratamientos/ver/' + ${t.id}}">Ver</a>
+                <a th:href="@{'/tratamientos/editar/' + ${t.id}}">Editar</a>
+                <form th:action="@{'/tratamientos/borrar/' + ${t.id}}" method="post" style="display:inline">
+                    <button type="submit" onclick="return confirm('Borrar tratamiento?')">Borrar</button>
+                </form>
             </td>
         </tr>
         </tbody>

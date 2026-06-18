@@ -14,30 +14,38 @@
         <div>
             <label>Nombre</label>
             <input type="text" th:field="*{nombre}" />
+            <div class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
         </div>
         <div>
             <label>Apellido</label>
             <input type="text" th:field="*{apellido}" />
+            <div class="error" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
         </div>
         <div>
             <label>DNI</label>
             <input type="text" th:field="*{dni}" />
+            <div class="error" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></div>
         </div>
         <div>
-            <label>Fecha Nacimiento</label>
+            <label>Fecha nacimiento</label>
             <input type="date" th:field="*{fechaNacimiento}" />
+            <div class="error" th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}"></div>
         </div>
         <div>
-            <label>Teléfono</label>
+            <label>Telefono</label>
             <input type="text" th:field="*{telefono}" />
         </div>
         <div>
             <label>Email</label>
             <input type="email" th:field="*{email}" />
+            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </div>
         <div>
-            <label>Dirección</label>
+            <label>Direccion</label>
             <input type="text" th:field="*{direccion}" />
+        </div>
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <div class="actions">
             <button type="submit">Guardar</button>

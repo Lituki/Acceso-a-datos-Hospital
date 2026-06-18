@@ -9,7 +9,9 @@
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
     <h1>Citas</h1>
-    <a class="btn" th:href="@{/citas/nuevo}">Nueva cita</a>
+    <div class="actions">
+        <a class="btn" th:href="@{/citas/nuevo}">Nueva cita</a>
+    </div>
     <table>
         <thead>
         <tr>
@@ -17,7 +19,7 @@
             <th>Fecha</th>
             <th>Motivo</th>
             <th>Paciente</th>
-            <th>Médicos</th>
+            <th>Medicos</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -27,18 +29,17 @@
             <td th:text="${c.fechaHora}"></td>
             <td th:text="${c.motivo}"></td>
             <td th:text="${c.paciente != null ? c.paciente.nombre + ' ' + c.paciente.apellido : ''}"></td>
-                <td>
-                    <span th:if="${c.medicos != null}">
-                        <span th:each="m,iterStat : ${c.medicos}">
-                            <span th:text="${m.nombre} + ' ' + ${m.apellido}"></span>
-                            <span th:if="${!iterStat.last}">, </span>
-                        </span>
+            <td>
+                <span th:if="${c.medicos != null}">
+                    <span th:each="m, iterStat : ${c.medicos}">
+                        <span th:text="${m.nombre + ' ' + m.apellido}"></span><span th:if="${!iterStat.last}">, </span>
                     </span>
-                </td>
+                </span>
+            </td>
             <td>
                 <a th:href="@{'/citas/editar/' + ${c.id}}">Editar</a>
                 <form th:action="@{'/citas/borrar/' + ${c.id}}" method="post" style="display:inline">
-                    <button type="submit" onclick="return confirm('¿Borrar cita?')">Borrar</button>
+                    <button type="submit" onclick="return confirm('Borrar cita?')">Borrar</button>
                 </form>
             </td>
         </tr>

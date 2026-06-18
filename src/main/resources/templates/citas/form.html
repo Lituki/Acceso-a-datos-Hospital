@@ -14,10 +14,12 @@
         <div>
             <label>Fecha y hora</label>
             <input type="datetime-local" th:field="*{fechaHora}" />
+            <div class="error" th:if="${#fields.hasErrors('fechaHora')}" th:errors="*{fechaHora}"></div>
         </div>
         <div>
             <label>Motivo</label>
             <input type="text" th:field="*{motivo}" />
+            <div class="error" th:if="${#fields.hasErrors('motivo')}" th:errors="*{motivo}"></div>
         </div>
         <div>
             <label>Observaciones</label>
@@ -26,14 +28,22 @@
         <div>
             <label>Paciente</label>
             <select th:field="*{paciente.id}">
+                <option value="">Seleccione un paciente</option>
                 <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nombre + ' ' + p.apellido}"></option>
             </select>
+            <div class="error" th:if="${#fields.hasErrors('paciente')}" th:errors="*{paciente}"></div>
         </div>
         <div>
-            <label>Médicos </label>
+            <label>Medicos</label>
             <select name="medicoIds" multiple size="5">
-                <option th:each="m : ${medicos}" th:value="${m.id}" th:text="${m.nombre + ' ' + m.apellido}"></option>
+                <option th:each="m : ${medicos}"
+                        th:value="${m.id}"
+                        th:text="${m.nombre + ' ' + m.apellido}"
+                        th:selected="${selectedMedicoIds != null and selectedMedicoIds.contains(m.id)}"></option>
             </select>
+        </div>
+        <div class="error" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <div class="actions">
             <button type="submit">Guardar</button>

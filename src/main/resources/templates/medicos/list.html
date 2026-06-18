@@ -2,14 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Médicos</title>
+    <title>Medicos</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
 <div th:replace="fragments/nav :: nav"></div>
 <div class="container">
-    <h1 th:text="${titulo != null ? titulo : 'Médicos'}"></h1>
-    <a class="btn" th:href="@{/medicos/nuevo}">Nuevo médico</a>
+    <h1 th:text="${titulo != null ? titulo : 'Medicos'}"></h1>
+    <div class="actions">
+        <a class="btn" th:href="@{/medicos/nuevo}">Nuevo medico</a>
+        <a class="btn btn-secondary" th:if="${titulo != null}" th:href="@{/especialidades}">Volver a especialidades</a>
+    </div>
     <table>
         <thead>
         <tr>
@@ -31,7 +34,7 @@
             <td>
                 <a th:href="@{'/medicos/editar/' + ${m.id}}">Editar</a>
                 <form th:action="@{'/medicos/borrar/' + ${m.id}}" method="post" style="display:inline">
-                    <button type="submit" onclick="return confirm('¿Borrar médico?')">Borrar</button>
+                    <button type="submit" onclick="return confirm('Borrar medico?')">Borrar</button>
                 </form>
             </td>
         </tr>

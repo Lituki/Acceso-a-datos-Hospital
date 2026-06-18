@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ingreso</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Nuevo ingreso</h1>
+    <form th:action="@{/ingresos/guardar}" th:object="${ingresoForm}" method="post">
+        <div>
+            <label>Paciente</label>
+            <select th:field="*{idPaciente}">
+                <option value="">Seleccione un paciente</option>
+                <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nombre + ' ' + p.apellido}"></option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('idPaciente')}" th:errors="*{idPaciente}"></div>
+        </div>
+        <div>
+            <label>Habitacion</label>
+            <select th:field="*{idHabitacion}">
+                <option value="">Seleccione una habitacion</option>
+                <option th:each="h : ${habitaciones}" th:value="${h.id}" th:text="${h.numero + ' - ' + h.tipo + ' (Planta ' + h.planta + ')'}"></option>
+            </select>
+            <div class="error" th:if="${#fields.hasErrors('idHabitacion')}" th:errors="*{idHabitacion}"></div>
+        </div>
+        <div>
+            <label>Motivo</label>
+            <input type="text" th:field="*{motivo}" />
+            <div class="error" th:if="${#fields.hasErrors('motivo')}" th:errors="*{motivo}"></div>
+        </div>
+        <div>
+            <label>Observaciones</label>
+            <textarea th:field="*{observaciones}"></textarea>
+        </div>
+        <div class="actions">
+            <button type="submit">Guardar</button>
+            <a class="btn" th:href="@{/ingresos}">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

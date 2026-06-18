@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Medicamento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<div class="container">
+    <h1>Medicamento</h1>
+    <p><strong>ID:</strong> <span th:text="${medicamento.id}"></span></p>
+    <p><strong>Nombre:</strong> <span th:text="${medicamento.nombre}"></span></p>
+    <p><strong>Composicion:</strong> <span th:text="${medicamento.composicion}"></span></p>
+    <p><strong>Precio:</strong> <span th:text="${medicamento.precio}"></span></p>
+    <p><strong>Unidad:</strong> <span th:text="${medicamento.unidad}"></span></p>
+    <a class="btn" th:href="@{/medicamentos}">Volver</a>
+</div>
+</body>
+</html>
